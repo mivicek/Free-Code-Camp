@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head><title>Simon Game</title> 
+<link rel="stylesheet" type="text/css" href="simon.css">
+</head>
+<body>
+ 
+<audio id="greenSound">
+    <source src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" type="audio/mp3">
+</audio> 
+<audio id="redSound">
+    <source src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3" type="audio/mp3">
+</audio> 
+<audio id="yellowSound">
+    <source src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3" type="audio/mp3">
+</audio> 
+<audio id="blueSound">
+    <source src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" type="audio/mp3">
+</audio> 
+
+<div class="main-ring">
+    <div class="cut-black1"></div>
+    <div class="ring green" onclick="playerTurn(0)" id="greenButton"></div>
+    <div class="ring red" onclick="playerTurn(1)" id="redButton"></div>
+    <div class="ring yellow" onclick="playerTurn(2)" id="yellowButton" ></div>
+    <div class="ring blue" onclick="playerTurn(3)" id="blueButton"></div>
+    <div class="cut-black2"></div>
+    <div class="cut" onclick="">
+    	<br />
+    	<div class="simon" id="simon">Simon</div>
+    	<div>
+			<div class="startb-border">	</div>
+			<div class="startb" id="startb" onclick="pokreni()";></div>
+			<div class="counter-grid"><div id="counter" class="counter">0</div> </div> 
+			<div class="strict-main-border"> </div>
+			<div class="strict-main"  onclick="toggleStrict()"></div>
+			<div class="strictb-border"></div> 
+			<div class="strictb" id="toggle"></div> 
+			<div class="note-count">COUNT</div>
+			<div class="note-start">START</div>
+			<div class="note-strict">STRICT</div>
+			<div class="onof-back"></div>
+			<div class="onof-front" id="onof" onclick="toggleOnof()"></div>
+			<div class="note-on">ON</div>
+			<div class="note-off">OFF</div>
+    	</div>
+    </div>
+</div>
+
+<script>
+var total = 20;
+var zadani = [];
+var currentLevel = 0;
+var countingSteps = 0;
+var playerSteps = 0;
+var myInterval;
+var strict = true;
+var green = document.getElementById("greenButton");
+var red = document.getElementById("redButton");
+var yellow = document.getElementById("yellowButton");
+var blue = document.getElementById("blueButton");
+var temp;
+var onof = false;
+allowStart();
+disableClicking();
+
+function resetGame() {
+	zadani = [];
+	currentLevel = 0;
+	countingSteps = 0;
+	playerSteps = 0;
+	temp = "";
+	disableClicking();
+	document.getElementById("counter").innerHTML = 0;
+
+}
+
+function pokreni() {
+	if (onof === false) {return;}
+	resetGame();
+	zadaj();
+}
+
+function zadaj() {
+	disableClicking();
+	if (onof === false) {return;}	
+	if (currentLevel === total) {
+		document.getElementById("simon").innerHTML = "WIN!";
+		document.getElementById("simon").style.color = "red";
+		currentLevel++;
+		document.getElementById("counter").innerHTML = currentLevel-1;
+		allowStart();
+		return;
+	}	
+	zadani.push(Math.floor(Math.random() * 4));
+	myInterval = setInterval(clickButton, 700);	
+	currentLevel++;
+	document.getElementById("counter").innerHTML = currentLevel-1;
+}
+	
+function clickButton () {
+	document.getElementById("simon").innerHTML = "Simon";
+	document.getElementById("simon").style.color = "black";
+	testAudio(zadani[countingSteps]);
+	countingSteps++;
+	if (countingSteps >= currentLevel) {
+		clearInterval(myInterval);
+		allowClicking();
+		countingSteps = 0;
+	}
+}
+
+function playerTurn(kliknuti) {
+	if (kliknuti === zadani[playerSteps]) {
+		testAudio(kliknuti);
+		playerSteps++;
+	}
+	else {
+		playerSteps = 0;
+		countingSteps = 0;
+		document.getElementById("simon").innerHTML = "Wrong";
+		document.getElementById("simon").style.color = "red";
+		if (strict === true) {
+			resetGame();
+			allowStart();
+			return;
+		}
+		else {
+			myInterval = setInterval(clickButton, 700);
+			return;
+		}
+	}
+
+	if (playerSteps === currentLevel) {
+		playerSteps = 0;
+		countingSteps = 0;
+		disableClicking();
+		disableStart();   //t1000
+		var delay = setTimeout(delaySecond,1000);
+		return;
+	}
+}
+
+function testAudio(value) {
+	if (value === 0) {
+		x = document.getElementById("greenSound"); 
+		document.getElementById("greenButton").style.opacity = "0.3";
+		x.play();
+		setTimeout(bla, 500);
+	}
+	else if (value===1) {
+		x = document.getElementById("redSound"); 
+		document.getElementById("redButton").style.opacity = "0.3";
+		x.play();
+		setTimeout(bla, 500);
+	}
+	else if (value===2) {
+		x = document.getElementById("yellowSound"); 
+		document.getElementById("yellowButton").style.opacity = "0.3";
+		x.play();	
+		setTimeout(bla, 500);
+	}
+	else if (value===3) {
+		x = document.getElementById("blueSound"); 
+		document.getElementById("blueButton").style.opacity = "0.3";
+		x.play();
+		setTimeout(bla, 500);	
+	}
+}
+
+function bla() {
+	document.getElementById("greenButton").style.opacity = "1";
+	document.getElementById("redButton").style.opacity = "1";
+	document.getElementById("yellowButton").style.opacity = "1";
+	document.getElementById("blueButton").style.opacity = "1";
+}
+
+function allowClicking() {
+	document.getElementById("greenButton").onclick = function() {playerTurn(0);};
+	document.getElementById("redButton").onclick = function() {playerTurn(1);};
+	document.getElementById("yellowButton").onclick = function() {playerTurn(2);};
+	document.getElementById("blueButton").onclick = function() {playerTurn(3);};
+	document.getElementById("startb").onclick =  function() {pokreni();};
+}
+
+function disableClicking() {
+	document.getElementById("greenButton").onclick = function() {return;};
+	document.getElementById("redButton").onclick =  function() {return;};
+	document.getElementById("yellowButton").onclick =  function() {return;};
+	document.getElementById("blueButton").onclick =  function() {return;};
+	document.getElementById("startb").onclick =  function() {return;};
+}
+
+function disableStart() {
+	document.getElementById("startb").onclick =  function() {return;};
+}
+
+function allowStart() {
+	document.getElementById("startb").onclick =  function() {pokreni();};
+}
+
+function toggleStrict() {
+	if (onof === false) {return;}
+	if (strict===true) {
+		strict = false;
+		document.getElementById("toggle").style.backgroundColor = "#595959";
+	}
+	else {
+		strict = true;
+		document.getElementById("toggle").style.backgroundColor = "red";
+	}
+}
+
+function toggleOnof() {
+	if (onof === false) {
+		onof = true;
+		temp = document.getElementById("onof");
+		temp.style.left = "125px";
+		allowStart();
+	}
+	else {
+		onof = false;
+		temp = document.getElementById("onof");
+		temp.style.left = "94px";
+		disableClicking();
+	}
+}
+
+function delaySecond() {
+	zadaj();
+}
+
+</script>
+</body>
+</html>

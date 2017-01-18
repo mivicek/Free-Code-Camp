@@ -1,0 +1,255 @@
+.colorButton {
+	padding:20px; 
+	border-width: 10px 10px 10px 10px;
+	border-color:grey;
+}
+
+.main-ring {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    top: 10px;
+    left: 10px;
+
+    border-color: #595959;
+    border-width: 10px 10px 10px 10px
+}
+
+.ring {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+}
+
+.ring.green {
+    top: 0;
+    left: 0;
+    background-color: green;
+    border-radius: 100% 0 0 0;
+}
+
+.ring.red {
+    top: 0;
+    right: 0;
+    background-color: red;
+    border-radius: 0 100% 0 0;
+}
+
+.ring.yellow {
+    bottom: 0;
+    left: 0;
+    background-color: yellow;
+    border-radius: 0 0 0 100%;
+}
+
+.ring.blue {
+    bottom: 0;
+    right: 0;
+    background-color: blue;
+    border-radius: 0 0 100% 0;
+}
+
+.cut {
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    border-radius: 75%;
+}
+
+.cut-black1 {
+    width: 520px;
+    height: 520px;
+    background-color: #595959;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    border-radius: 50%;
+    pointer-events: none;
+    border-color:#595959;
+}
+
+.cut-black2 {
+    width: 270px;
+    height: 270px;
+    background-color: #595959;
+    position: absolute;
+    top: 115px;
+    left: 115px;
+    border-radius: 50%;
+    pointer-events: none;
+    border-color:#595959;
+}
+
+.counter-grid {
+    width: 60px;
+    height: 40px;
+    background-color: brown;
+    position: absolute;
+    top: 130px;
+    left: 14px;
+    border-radius: 20%;
+    font-size: 30px;
+    color:white;
+    font-weight: bold;
+    margin:auto;
+    pointer-events: none;
+}
+
+.counter {
+	font-size: 35px;
+    color:white;
+    font-weight: bold;
+    text-align: center;
+    pointer-events: none;
+}
+
+.startb-border {
+    width: 32px;
+    height: 32px;
+    background-color: #595959;
+    position: absolute;
+    top: 129px;
+    left: 108px;
+    border-radius: 50%;
+}
+
+.startb {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    position: absolute;
+    top: 130px;
+    left: 109px;
+    border-radius: 50%;
+}
+
+.strictb-border {
+    width: 12px;
+    height: 12px;
+    background-color: #595959;
+    position: absolute;
+    top: 112px;
+    left: 186px;
+    border-radius: 75%;
+}
+
+.strictb {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
+    top: 113px;
+    left: 187px;
+    border-radius: 75%;
+}
+
+.strict-main {
+    width: 30px;
+    height: 30px;
+    background-color: yellow;
+    position: absolute;
+    top: 131px;
+    left: 178px;
+    border-radius: 50%;
+}
+
+.strict-main-border {
+    width: 32px;
+    height: 32px;
+    background-color: #595959;
+    position: absolute;
+    top: 130px;
+    left: 177px;
+    border-radius: 50%;
+}
+
+.simon {
+	margin:auto;
+	font-size: 60px; 
+	font-family:Arial black;
+	font-weight:bold;
+	color:black;  
+	position: absolute;
+    top: 35px;
+    left: 23px;
+    pointer-events: none;
+    text-align: center;
+  }
+
+
+.onof-back {
+	width: 70px;
+    height: 32px;
+    background-color:#595959;
+    position: absolute;
+    top: 200px;
+    left: 88px;
+    border-radius: 15%;
+}
+
+
+.onof-front {
+	background-color:#0086b3;
+	position: absolute;
+	width: 25px;
+    height: 25px;
+    border-radius: 15%;	
+    top: 203px;
+    left: 94px;
+}
+
+.note-count {
+	font-family:Arial black;
+	font-weight:bold;
+	position: absolute;
+    top: 168px;
+    left: 16px;	
+ 	font-size: 16px;    
+ 	pointer-events: none;
+}
+
+.note-start {
+	font-family:Arial black;
+	font-weight:bold;
+	font-family:Arial black;
+	font-weight:bold;
+	position: absolute;
+    top: 168px;
+    left: 98px;	
+    font-size: 16px; 	
+    pointer-events: none;	
+}
+
+.note-strict {
+	font-family:Arial black;
+	font-weight:bold;
+	position: absolute;
+    top: 168px;
+    left: 165px;
+    font-size: 16px; 	
+    pointer-events: none;		
+}
+
+.note-on {
+	font-family:Arial black;
+	font-weight:bold;	
+	font-size: 16px; 
+	position: absolute;
+    top: 206px;
+    left: 162px;
+    pointer-events: none;
+}
+
+.note-off {
+	font-family:Arial black;
+	font-weight:bold;	
+	font-size: 16px; 
+	position: absolute;
+    top: 206px;
+    left: 52px;
+    pointer-events: none;
+}
+
